@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <!--    <link href = "css/styles.css" rel = "stylesheet"/>-->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" rel="stylesheet">
+    <title>Pokédex Java</title>
+</head>
+<body class="bg-black bg-gradient text-white">
+<div class="container">
+    <h1 class="h4">Pokédex Java</h1>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" th:each="pokemon: ${pokeData}">
+            <div class="card bg-dark text-white">
+                <picture class="card-img-top">
+                    <img loading="lazy" th:alt="${pokemon.name}" th:src="${pokemon.sprites.frontDefault}">
+                </picture>
+                <div class="card-body">
+                    <h5 class="h4 card-title text-capitalize" th:text="${pokemon.name}"></h5>
+                    <div class="card-text">
+                        <span th:each="pokemonType: ${pokemon.types}">
+                            <span class="text-uppercase" th:switch="${pokemonType.type.name}">
+                                <span th:case="'normal'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(112, 112, 72);"></span>
+                                <span th:case="'fire'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(172, 79, 12);"></span>
+                                <span th:case="'water'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(14, 50, 137);"></span>
+                                <span th:case="'grass'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(95, 144, 45);"></span>
+                                <span th:case="'electric'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(174, 140, 6);"></span>
+                                <span th:case="'ice'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(37, 99, 99);"></span>
+                                <span th:case="'fighting'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(154, 38, 32);"></span>
+                                <span th:case="'poison'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(128, 51, 128);"></span>
+                                <span th:case="'ground'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(133, 105, 27);"></span>
+                                <span th:case="'flying'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(39, 15, 112);"></span>
+                                <span th:case="'psychic'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(149, 6, 49);"></span>
+                                <span th:case="'bug'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(134, 147, 26);"></span>
+                                <span th:case="'rock'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(147, 128, 45);"></span>
+                                <span th:case="'ghost'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(90, 70, 122);"></span>
+                                <span th:case="'dark'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(90, 70, 58);"></span>
+                                <span th:case="'dragon'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(53, 6, 169);"></span>
+                                <span th:case="'steel'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(49, 49, 73);"></span>
+                                <span th:case="'fairy'" class="badge" th:text="${pokemonType.type.name}" style="background: rgb(86, 18, 25);"></span>
+                            </span>
+
+                        </span>
+                    </div>
+                    <p class="card-text">
+                        <details>
+                            <summary class="text-muted">More details</summary>
+                            <p>Height: <span th:text="${pokemon.height} / 10"></span> m</p>
+                            <p>Weight: <span th:text="${pokemon.weight} / 10"></span> kg</p>
+                            <p>ID: <span th:text="${pokemon.id}"></span></p>
+                        </details>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script crossorigin="anonymous"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
